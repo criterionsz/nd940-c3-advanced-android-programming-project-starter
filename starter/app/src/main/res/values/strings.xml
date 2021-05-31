@@ -11,4 +11,16 @@
     <string name="button_name">Click me</string>
     <string name="button_loading">We are loading </string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="content_glide_title">Glide - Image Loading Library by BumpTech</string>
+    <string name="content_loadapp_title">LoadApp - Current repository by Udacity</string>
+    <string name="content_retrofit_title">Retrofit - Type-safe HTTP client for Android and Java by Square, Inc</string>
+    <string name="button_title_download">Download</string>
+    <string name="button_title_loading">We are loading</string>
+    <string name="toast_title_select_option">Please, select the file to download</string>
+    <string name="notification_channel_id">notification_channel_id</string>
+    <string name="notification_channel_description">notification_channel_id</string>
+    <string name="file_name_title">File name:</string>
+    <string name="status_title">Status:</string>
+    <string name="button_ok_title">OK</string>
+    <string name="cloud_picture">Cloud picture</string>
 </resources>
