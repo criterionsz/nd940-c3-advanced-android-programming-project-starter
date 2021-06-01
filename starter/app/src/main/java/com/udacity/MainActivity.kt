@@ -3,7 +3,6 @@ package com.udacity
 import android.app.DownloadManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -14,7 +13,6 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -25,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private var downloadID: Long = 0
 
     private lateinit var notificationManager: NotificationManager
+    private var fileName = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +41,18 @@ class MainActivity : AppCompatActivity() {
             if (-1 != checkedId) {
                 custom_button.setStateButton(ButtonState.Loading)
                 when (checkedId) {
-                    R.id.glide_radio_button -> download(URL_GLIDE)
-                    R.id.load_app_radio_button -> download(URL)
-                    R.id.retrofit_radio_button -> download(URL_RETROFIT)
+                    R.id.glide_radio_button -> {
+                        fileName = getString(R.string.content_glide_title)
+                        download(URL_GLIDE)
+                    }
+                    R.id.load_app_radio_button -> {
+                        fileName = getString(R.string.content_loadapp_title)
+                        download(URL)
+                    }
+                    R.id.retrofit_radio_button -> {
+                        fileName = getString(R.string.content_retrofit_title)
+                        download(URL_RETROFIT)
+                    }
                 }
             } else {
                 Toast.makeText(
@@ -91,7 +99,7 @@ class MainActivity : AppCompatActivity() {
     private fun download(url: String) {
         val request =
             DownloadManager.Request(Uri.parse(url))
-                .setTitle(getString(R.string.app_name))
+                .setTitle(fileName)
                 .setDescription(getString(R.string.app_description))
                 .setRequiresCharging(false)
                 .setAllowedOverMetered(true)
@@ -119,6 +127,11 @@ class MainActivity : AppCompatActivity() {
             val notificationManager = getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(notificationChannel)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(receiver)
     }
 
     companion object {

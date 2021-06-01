@@ -3,5 +3,7 @@
     <declare-styleable name="LoadingButton">
         <attr name="loading" format="color" />
         <attr name="download" format="color" />
+        <attr name="text_color" format="color" />
+        <attr name="circle_color" format="color" />
     </declare-styleable>
 </resources>

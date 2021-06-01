@@ -57,6 +57,8 @@
         android:layout_height="60dp"
         android:layout_margin="20dp"
         app:download="@color/colorPrimary"
+        app:text_color="@color/white"
+        app:circle_color="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

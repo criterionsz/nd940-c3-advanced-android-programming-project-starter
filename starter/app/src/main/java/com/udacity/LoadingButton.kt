@@ -25,6 +25,8 @@ class LoadingButton @JvmOverloads constructor(
     private val pointPosition: PointF = PointF(0.0f, 0.0f)
     private var downloadColor = 0
     private var loadingColor = 0
+    private var textColor = 0
+    private var circleColor = 0
     private var progress = 0F
     private var rectf = RectF()
 
@@ -59,6 +61,8 @@ class LoadingButton @JvmOverloads constructor(
         context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
             downloadColor = getColor(R.styleable.LoadingButton_download, 0)
             loadingColor = getColor(R.styleable.LoadingButton_loading, 0)
+            textColor = getColor(R.styleable.LoadingButton_text_color, 0)
+            circleColor = getColor(R.styleable.LoadingButton_circle_color, 0)
         }
 
         isClickable = true
@@ -71,11 +75,11 @@ class LoadingButton @JvmOverloads constructor(
         if (buttonState == ButtonState.Loading) {
             paint.color = loadingColor
             canvas?.drawRect(0f, 0f, progress  * widthSize, heightSize.toFloat(), paint)
-            paint.color = Color.YELLOW
+            paint.color = circleColor
             canvas?.drawArc(rectf, 0f, progress * 360f, true, paint)
         }
         pointPosition.computeXYForTextButton()
-        paint.color = Color.WHITE
+        paint.color = textColor
         canvas?.drawText(label, pointPosition.x, pointPosition.y, paint)
 
     }
